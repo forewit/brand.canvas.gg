@@ -20,8 +20,6 @@ const ComponentA = {
     <component-b></component-b>`
 }
 
-
-
 // Create a Vue application
 const app = Vue.createApp({
     components: {
