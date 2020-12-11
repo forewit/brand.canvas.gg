@@ -1,16 +1,30 @@
-const Counter = {
-    data() {
-      return {
-        counter: 0
-      }
-    },
+const ComponentB = {
+    template: `
+    <button>ComponentB</button>`
+}
 
-    // vue lifecycle event
-    mounted() {
-        setInterval(() => {
-          this.counter++
-        }, 1000)
-      }
-  }
-  
-  Vue.createApp(Counter).mount('#main')
+const ComponentA = {
+    components: {
+        'component-b': ComponentB
+    },
+    data() {
+        return {
+            count: 0
+        }
+    },
+    props: ['name'],
+    template: `
+    <button class="test" @click="count++">
+      {{ name }}{{ count }}
+    </button>
+    <component-b></component-b>`
+}
+
+
+
+// Create a Vue application
+const app = Vue.createApp({
+    components: {
+        'component-a': ComponentA
+    }
+}).mount('#app')
